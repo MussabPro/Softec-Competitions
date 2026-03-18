@@ -4,6 +4,7 @@ This project fetches SOFTEC competitions data directly from the official API and
 
 - A structured CSV file with prizes, registration fees, and team-size limits.
 - A local folder of competition logos with clean filenames.
+- A local folder of competition PDF documents/details.
 
 ## Project Purpose
 
@@ -12,7 +13,7 @@ The script is designed to automate competition data collection for documentation
 ## Data Source
 
 - API Endpoint: `https://backend.softecnu.org/api/competitions_listable/`
-- Input fields used: `name`, `registration_name`, `logo`, `winner_Prize`, `runnerUp_Prize`, `fees`, `min_team_size`, `max_team_size`
+- Input fields used: `name`, `registration_name`, `logo`, `details[].document`, `winner_Prize`, `runnerUp_Prize`, `fees`, `min_team_size`, `max_team_size`
 
 ## Output Files
 
@@ -21,12 +22,14 @@ The script is designed to automate competition data collection for documentation
 | `extract_competitions.py` | Python script that fetches API data and generates outputs |
 | `competitions_data.csv` | Generated competition dataset |
 | `competition_logos/` | Downloaded logo images (one per competition) |
+| `competition_pdfs/` | Downloaded PDF/detail documents (ignored by Git) |
 
 ## CSV Schema
 
 | Column | Description |
 |---|---|
 | `logo` | Logo filename stored in `competition_logos/` |
+| `documents` | Pipe-separated PDF filenames stored in `competition_pdfs/` |
 | `Competition Name` | Competition title |
 | `Winner Prize` | Winner prize amount (PKR) |
 | `Runner Up Prize` | Runner-up prize amount (PKR) |
@@ -40,7 +43,7 @@ The script is designed to automate competition data collection for documentation
 python3 extract_competitions.py
 ```
 
-After running, refresh `competitions_data.csv` and `competition_logos/`.
+After running, refresh `competitions_data.csv`, `competition_logos/`, and `competition_pdfs/`.
 
 ## Competitions Table
 
@@ -81,4 +84,4 @@ After running, refresh `competitions_data.csv` and `competition_logos/`.
 ## Notes
 
 - Current API response contains 19 competitions.
-- If API data changes, rerun the script to update both CSV and logos.
+- If API data changes, rerun the script to update CSV, logos, and PDF documents.
