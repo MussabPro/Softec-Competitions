@@ -1,0 +1,1 @@
+# Softec-Competitions
